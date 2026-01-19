@@ -3,48 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Raed's Games Platform</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <title>Homemade Games</title>
   <link rel="stylesheet" href="/shared/platform.css">
 </head>
 <body>
-  <main class="platform-shell">
-    <header class="platform-header">
-      <h1 class="platform-title">Raed's Games</h1>
-      <span class="platform-tag">Launching soon | GitHub Pages</span>
-    </header>
-    <p class="platform-intro">
-      A clean slate for small web games and experiments. The first build will land here shortly - bookmark this page and check back for updates.
-    </p>
-    <div class="platform-grid">
-      <a class="platform-card" href="/pong/">
-        <div class="platform-card-title">
-          <span>Pong (retro refresh)</span>
-          <span class="platform-pill">Queued</span>
+  <header class="container hero">
+    <p class="badge">Kid-friendly mini arcades</p>
+    <h1 class="hero-title">Homemade Games</h1>
+    <p class="hero-tagline">Bright, simple games we can build and play together.</p>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <article class="card">
+        <div class="card-title">
+          <span class="emoji" aria-hidden="true">🧠</span>
+          <span>Memory Match</span>
+          <span class="badge badge-soon">Coming soon</span>
         </div>
-        <p>Classic paddle action with a modern color palette and responsive controls.</p>
-      </a>
-      <a class="platform-card" href="/memory/">
-        <div class="platform-card-title">
-          <span>Memory Flip</span>
-          <span class="platform-pill">Queued</span>
+        <p class="card-desc">Flip friendly tiles, remember the pairs, and race the clock.</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="/memory/">Open Memory (coming soon)</a>
         </div>
-        <p>Match pairs against a timer; crisp animations and mobile-first layout.</p>
-      </a>
-      <a class="platform-card" href="/rushhour/">
-        <div class="platform-card-title">
+      </article>
+
+      <article class="card">
+        <div class="card-title">
+          <span class="emoji" aria-hidden="true">🚗</span>
           <span>Rush Hour</span>
-          <span class="platform-pill">Queued</span>
+          <span class="badge badge-soon">Coming soon</span>
         </div>
-        <p>Grid-based sliding puzzle inspired by the traffic jam classic.</p>
-      </a>
+        <p class="card-desc">Slide the traffic jam apart to free the little car.</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="/rushhour/">Open Rush Hour (coming soon)</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">
+          <span class="emoji" aria-hidden="true">🏓</span>
+          <span>Pong Remix</span>
+          <span class="badge badge-soon">Coming soon</span>
+        </div>
+        <p class="card-desc">Paddles, bouncy ball, and pastel neon vibes for quick matches.</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="/pong/">Open Pong (coming soon)</a>
+        </div>
+      </article>
     </div>
-    <footer class="platform-footer">
-      <span>Deployed via GitHub Pages.</span>
-      <span><a href="https://github.com/raedalhaddad" target="_blank" rel="noopener">GitHub profile</a></span>
-    </footer>
   </main>
+
+  <footer class="container footer">
+    <span>Built together - v0.1</span>
+  </footer>
 </body>
 </html>
