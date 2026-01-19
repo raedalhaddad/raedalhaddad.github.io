@@ -4,7 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Homemade Games</title>
-  <link rel="stylesheet" href="/shared/platform.css?v=2026-01-18-3">
+  <script>
+    (() => {
+      const buildUrl = '/shared/build_id.txt';
+      const currentUrl = new URL(window.location.href);
+      const currentV = currentUrl.searchParams.get('v');
+
+      const updateLinks = (buildId) => {
+        const links = document.querySelectorAll('[data-versioned-link]');
+        links.forEach((link) => {
+          const url = new URL(link.getAttribute('href'), window.location.origin);
+          url.searchParams.set('v', buildId);
+          link.href = url.pathname + url.search + url.hash;
+        });
+      };
+
+      fetch(buildUrl + '?t=' + Date.now())
+        .then((res) => res.text())
+        .then((text) => text.trim())
+        .then((buildId) => {
+          if (!buildId) return;
+          if (currentV !== buildId) {
+            currentUrl.searchParams.set('v', buildId);
+            const next = currentUrl.toString();
+            if (next !== window.location.href) {
+              window.location.replace(next);
+            }
+            return;
+          }
+          const cssLink = document.getElementById('platformCss');
+          if (cssLink) cssLink.href = `/shared/platform.css?v=${buildId}`;
+          updateLinks(buildId);
+        })
+        .catch(() => {});
+    })();
+  </script>
+  <link id="platformCss" rel="stylesheet" href="/shared/platform.css?v=2026-01-18-4">
 </head>
 <body>
   <header class="container hero">
@@ -23,7 +58,7 @@
         </div>
         <p class="card-desc">Flip friendly tiles, remember the pairs, and race the clock.</p>
         <div class="card-actions">
-          <a class="btn btn-primary" href="/memory/?v=2026-01-18-3">Open Memory (coming soon)</a>
+          <a class="btn btn-primary" data-versioned-link href="/memory/?v=2026-01-18-4">Open Memory (coming soon)</a>
         </div>
       </article>
 
@@ -35,7 +70,7 @@
         </div>
         <p class="card-desc">Slide the traffic jam apart to free the little car.</p>
         <div class="card-actions">
-          <a class="btn btn-primary" href="/rushhour/?v=2026-01-18-3">Open Rush Hour (coming soon)</a>
+          <a class="btn btn-primary" data-versioned-link href="/rushhour/?v=2026-01-18-4">Open Rush Hour (coming soon)</a>
         </div>
       </article>
 
@@ -47,7 +82,7 @@
         </div>
         <p class="card-desc">Paddles, bouncy ball, and pastel neon vibes for quick matches.</p>
         <div class="card-actions">
-          <a class="btn btn-primary" href="/pong/?v=2026-01-18-3">Open Pong (coming soon)</a>
+          <a class="btn btn-primary" data-versioned-link href="/pong/?v=2026-01-18-4">Open Pong (coming soon)</a>
         </div>
       </article>
     </div>

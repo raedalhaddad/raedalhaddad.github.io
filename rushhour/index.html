@@ -4,7 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rush Hour | Homemade Games</title>
-  <link rel="stylesheet" href="/shared/platform.css?v=2026-01-18-3">
+  <script>
+    (() => {
+      const buildUrl = '/shared/build_id.txt';
+      const currentUrl = new URL(window.location.href);
+      const currentV = currentUrl.searchParams.get('v');
+
+      const updateLinks = (buildId) => {
+        const links = document.querySelectorAll('[data-versioned-link]');
+        links.forEach((link) => {
+          const url = new URL(link.getAttribute('href'), window.location.origin);
+          url.searchParams.set('v', buildId);
+          link.href = url.pathname + url.search + url.hash;
+        });
+      };
+
+      fetch(buildUrl + '?t=' + Date.now())
+        .then((res) => res.text())
+        .then((text) => text.trim())
+        .then((buildId) => {
+          if (!buildId) return;
+          if (currentV !== buildId) {
+            currentUrl.searchParams.set('v', buildId);
+            const next = currentUrl.toString();
+            if (next !== window.location.href) {
+              window.location.replace(next);
+            }
+            return;
+          }
+          const cssLink = document.getElementById('platformCss');
+          if (cssLink) cssLink.href = `/shared/platform.css?v=${buildId}`;
+          updateLinks(buildId);
+        })
+        .catch(() => {});
+    })();
+  </script>
+  <link id="platformCss" rel="stylesheet" href="/shared/platform.css?v=2026-01-18-4">
 </head>
 <body>
   <main class="container">
@@ -16,7 +51,7 @@
       </div>
       <p class="card-desc">We are planning the puzzle grid now. Soon you will slide the little car past the traffic jam.</p>
       <div class="card-actions">
-        <a class="btn btn-ghost" href="/?v=2026-01-18-3">Back to Home</a>
+        <a class="btn btn-ghost" data-versioned-link href="/?v=2026-01-18-4">Back to Home</a>
       </div>
     </article>
   </main>
