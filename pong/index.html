@@ -4,6 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pong Remix | Homemade Games</title>
+  <script>
+    (() => {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has('v')) {
+        url.searchParams.delete('v');
+        const clean = url.pathname + (url.searchParams.toString() ? `?${url.searchParams.toString()}` : '') + url.hash;
+        if (clean !== window.location.pathname + window.location.search + window.location.hash) {
+          window.location.replace(clean);
+        }
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="/shared/platform.css?v=2026-01-18-3">
 </head>
 <body>
