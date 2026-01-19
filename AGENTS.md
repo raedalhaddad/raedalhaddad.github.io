@@ -26,6 +26,7 @@
 - Shared assets:
   - `/shared/platform.css` (theme + base components)
   - (optional later) `/shared/platform.js` (shared helpers)
+  - Bump `/shared/build_id.txt` and update `?v=BUILD_ID` on shared assets/links whenever shared assets change.
 
 ## When adding a new game
 - Create a new folder: `/<game>/`
